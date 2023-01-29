@@ -2,7 +2,7 @@ import React from "react";
 
 const PopupWithForm = (props) => {
 
-  const { name, title, children, submitBtnText, isOpen, onClose } = props;
+  const { name, title, children, submitBtnText, isOpen, onClose, onSubmit } = props;
   return (
 
     <section className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`} >
@@ -14,6 +14,7 @@ const PopupWithForm = (props) => {
             name={name}
             id={name}
             noValidate=""
+            onSubmit={onSubmit}
           >
             <h2 className="popup__title">{title}</h2>
             {children}

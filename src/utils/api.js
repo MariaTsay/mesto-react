@@ -25,7 +25,7 @@ export class Api {
         headers: this._headers,
         body: JSON.stringify({
           name: data.name,
-          about: data.job
+          about: data.about
         })
       })
       return this._handleResponse(res);
@@ -40,10 +40,7 @@ export class Api {
       const res = await fetch(`${this._baseUrl}/cards`, {
         method: 'POST',
         headers: this._headers,
-        body: JSON.stringify({
-          name: data.cardname,
-          link: data.cardlink
-        })
+        body: JSON.stringify(data)
       })
       return this._handleResponse(res);
     }
@@ -76,9 +73,7 @@ export class Api {
       const res = await fetch(`${this._baseUrl}/users/me/avatar`, {
         method: 'PATCH',
         headers: this._headers,
-        body: JSON.stringify({
-          avatar: data.avatarlink
-        })
+        body: JSON.stringify(data)
       })
       return this._handleResponse(res);
     }
