@@ -24,7 +24,6 @@ const Card = (props) => {
         onCardLike(card);
     }
 
-
     return (
         <li className="places__item">
             {isOwn && (

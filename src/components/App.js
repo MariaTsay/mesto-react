@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -11,13 +11,13 @@ import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 
 function App() {
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({});
-  const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
-  const [currentUser, setCurrentUser] = React.useState({});
-  const [cards, setCards] = React.useState([]);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({});
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+  const [cards, setCards] = useState([]);
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
@@ -119,13 +119,12 @@ function App() {
     }
   }
 
-
-  React.useEffect(() => {
+  useEffect(() => {
     getCurrentUserInfo();
     getCards();
   }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleEscBtn = (e) => {
       if(e.keyCode === 27)
       closeAllPopups()
@@ -150,7 +149,6 @@ function App() {
           />
           <Footer />
         </div>
-        <template className="template-card template-card_type_default" />
         <EditProfilePopup 
         isOpen={isEditProfilePopupOpen} 
         onClose={closeAllPopups}

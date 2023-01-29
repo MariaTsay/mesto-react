@@ -13,7 +13,6 @@ const PopupWithForm = (props) => {
             className="popup__form"
             name={name}
             id={name}
-            noValidate=""
             onSubmit={onSubmit}
           >
             <h2 className="popup__title">{title}</h2>

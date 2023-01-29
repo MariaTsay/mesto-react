@@ -22,8 +22,14 @@ const AddPlacePopup = (props) => {
       name: cardname,
       link: cardlink
     });
-    e.target.reset();
- }
+  }
+
+  React.useEffect(() => {
+    if(isOpen) {
+      setCardname('');
+      setCardlink('');
+    }
+  }, [isOpen])
 
   return (
     <PopupWithForm
@@ -44,6 +50,7 @@ const AddPlacePopup = (props) => {
         minLength={2}
         maxLength={30}
         onChange={handleChangeCardname}
+        value={cardname}
       />
       <span className="popup__error placename-input-error" />
       <input
@@ -54,6 +61,7 @@ const AddPlacePopup = (props) => {
         placeholder="Ссылка на картинку"
         required=""
         onChange={handleChangeCardlink}
+        value={cardlink}
       />
       <span className="popup__error placelink-input-error" />
     </PopupWithForm>
