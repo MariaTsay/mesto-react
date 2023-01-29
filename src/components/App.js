@@ -125,7 +125,14 @@ function App() {
     getCards();
   }, [])
 
-
+  React.useEffect(() => {
+    const handleEscBtn = (e) => {
+      if(e.keyCode === 27)
+      closeAllPopups()
+    }
+    document.addEventListener('keydown', handleEscBtn)
+    return () => document.removeEventListener('keydown', handleEscBtn)
+  }, [])
  
   return (
     <CurrentUserContext.Provider value={currentUser}>
