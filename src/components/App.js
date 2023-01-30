@@ -4,7 +4,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
-import {api} from "../utils/api";
+import { api } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
@@ -44,15 +44,15 @@ function App() {
       api.dislikeCard(card._id, isLiked).then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
       })
-      .catch((err) => console.log(err))
-     
+        .catch((err) => console.log(err))
+
     } else {
       api.likeCard(card._id, isLiked).then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-      }) 
-      .catch((err) => console.log(err))
+      })
+        .catch((err) => console.log(err))
     }
-    
+
   }
 
   const handleCardDelete = async (card) => {
@@ -64,9 +64,9 @@ function App() {
     }
   }
 
-  const handleUpdateUser = async ({name, about}) => {
+  const handleUpdateUser = async ({ name, about }) => {
     try {
-      const updatedUser = await api.setUserInfo({name, about});
+      const updatedUser = await api.setUserInfo({ name, about });
       setCurrentUser(updatedUser);
       closeAllPopups();
     } catch (err) {
@@ -126,13 +126,13 @@ function App() {
 
   useEffect(() => {
     const handleEscBtn = (e) => {
-      if(e.keyCode === 27)
-      closeAllPopups()
+      if (e.keyCode === 27)
+        closeAllPopups()
     }
     document.addEventListener('keydown', handleEscBtn)
     return () => document.removeEventListener('keydown', handleEscBtn)
   }, [])
- 
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
@@ -149,15 +149,15 @@ function App() {
           />
           <Footer />
         </div>
-        <EditProfilePopup 
-        isOpen={isEditProfilePopupOpen} 
-        onClose={closeAllPopups}
-        onUpdateUser={handleUpdateUser} 
+        <EditProfilePopup
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
         />
         <AddPlacePopup
-        isOpen={isAddPlacePopupOpen} 
-        onClose={closeAllPopups}
-        onAddPlace={handleAddPlaceSubmit}
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddPlace={handleAddPlaceSubmit}
         />
         <ImagePopup
           isOpen={isImagePopupOpen}
@@ -169,13 +169,13 @@ function App() {
           name="deletecard"
           submitBtnText="Да"
         />
-        <EditAvatarPopup 
-        isOpen={isEditAvatarPopupOpen} 
-        onClose={closeAllPopups} 
-        onUpdateAvatar={handleUpdateAvatar}
+        <EditAvatarPopup
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
         />
       </div>
-      </CurrentUserContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 
