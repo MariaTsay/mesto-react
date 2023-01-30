@@ -36,7 +36,6 @@ const EditProfilePopup = (props) => {
         });
     }
 
-
     return (
         <PopupWithForm
             title="Редактировать профиль"
